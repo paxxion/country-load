@@ -1,0 +1,36 @@
+{
+  "name": "paxxion/craft-country-load",
+  "description": "Simplify the creation of country/area form dropdowns.",
+  "type": "craft-plugin",
+  "license": "mit",
+  "support": {
+    "email": "web@paxxion.com"
+  },
+  "require": {
+    "php": ">=8.2",
+    "craftcms/cms": "^5.8.0",
+    "l91/iso-3166-2": "^1.0",
+    "symfony/intl": "^7.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "paxxion\\craftcountryload\\": "src/"
+    }
+  },
+  "extra": {
+    "handle": "country-load",
+    "name": "Country Load",
+    "developer": "Paxxion",
+    "documentationUrl": ""
+  },
+  "config": {
+    "sort-packages": true,
+    "platform": {
+      "php": "8.2"
+    },
+    "allow-plugins": {
+      "yiisoft/yii2-composer": true,
+      "craftcms/plugin-installer": true
+    }
+  }
+}

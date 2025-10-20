@@ -1,0 +1,23 @@
+{# @var plugin \paxxion\craftcountryload\Plugin #}
+{# @var settings \paxxion\craftcountryload\models\Settings #}
+
+{% import '_includes/forms.twig' as forms %}
+
+{{ forms.textField({
+    label: 'Allowed Countries'|t('country-load'),
+    name: 'allowedCountries',
+    value: settings.allowedCountries ?? '',
+    instructions: 'Comma-separated ISO country codes.'|t('country-load')
+}) }}
+
+{{ forms.textField({
+    label: 'Promoted Countries'|t('country-load'),
+    name: 'promotedCountries',
+    value: settings.promotedCountries ?? '',
+    instructions: 'Comma-separated ISO country codes to push at the top.'|t('country-load')
+}) }}
+
+<div>
+    Note: you can use the shortcut "EU" to include European Union countries: 
+    Austria, Belgium, Bulgaria, Cyprus, Czech Republic, Germany, Denmark, Estonia, Spain, Finland, France, Greece, Croatia, Hungary, Ireland, Italy, Lithuania, Luxembourg, Latvia, Malta, Netherlands, Poland, Portugal, Romania, Sweden, Slovenia, Slovakia.
+</div>

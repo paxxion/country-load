@@ -1,0 +1,62 @@
+{% js "https://cdn.jsdelivr.net/npm/alpinejs@3.15.0/dist/cdn.min.js" at head with { defer: true} %}
+<style>
+    [x-cloak] { display: none !important; }
+</style>
+
+<script>
+    var getRegions = function(code) {        
+        {% if options.ajax %}
+
+        {% else %}
+            var regions = JSON.parse('{{ craft.countryLoad.allRegions|json_encode|e('js')|raw }}');
+            return regions[code];
+        {% endif %}
+    }
+</script>
+
+
+<div class="{{ options.classes.wrapper }}" >
+    <div x-data="{
+        selectedCountry: '',
+        selectedRegion: '',
+        countries: JSON.parse('{{ craft.countryLoad.countries|json_encode|e('js')|raw }}'),
+        regions: null,
+        init() {
+            var self = this;
+        },
+        fetchRegions() {
+            var self = this;
+            self.selectedRegion = '';
+            self.regions = getRegions(self.selectedCountry);
+        }
+    }">
+        <div class="{{ options.classes.countryWrapper }}">
+            <label class="{{ options.classes.label }}">{{ options.labels.country }}</label>
+            <select @change="fetchRegions" x-model="selectedCountry" name="{{ options.names.country }}" class="{{ options.classes.select }}">
+                <option>{{ options.labels.chooseCountry }}</option>
+                <template x-if="countries.promoted">
+                    <template x-for="name,code in countries.promoted">
+                        <option :value="code" x-text="name"></option>
+                    </template>                    
+                </template>
+                <option disabled>–––</option>
+                <template x-for="name,code in countries.base">
+                    <option :value="code" x-text="name"></option>
+                </template>
+            </select>
+        </div>
+
+        <template x-if="regions">
+            <div class="{{ options.classes.regionWrapper }}">
+                <label class="{{ options.classes.label }}">{{ options.labels.region }}</label>
+                <select x-model="selectedRegion" name="{{ options.names.region }}" class="{{ options.classes.select }}">
+                    <option>{{ options.labels.chooseRegion }}</option>
+                    <template x-for="name, code in regions">
+                        <option :value="name" x-text="name"></option>
+                    </template>
+                </select>
+            </div>
+        </template>
+
+    </div>
+</div>
