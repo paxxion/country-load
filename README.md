@@ -119,7 +119,7 @@ Specify a language for country names. If you don't, `currentSite.language` will 
 <div>
 	{{ craft.countryLoad.dropdown({
 		language: 'it',
-		provinces: true,
+		enableItalyProvinces: true,
 		classes: {
 			label: 'block mb-1',
 			select: 'w-full',
@@ -134,6 +134,7 @@ A simple Tailwind-based dropdown example. Of course, you can just use it like so
 ```
 {{ craft.countryLoad.dropdown }}
 ```
+
 
 ## FAQ
 
