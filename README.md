@@ -133,7 +133,7 @@ Specify a language for country names. If you don't, `currentSite.language` will 
 </div>
 ```
 
-A simple Tailwind-based dropdown example. Of course, you can just use it like so:
+A simple Tailwind-based dropdown example with common settings. Of course, you can just use it like so:
 
 ```
 {{ craft.countryLoad.dropdown }}
