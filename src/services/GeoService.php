@@ -7,6 +7,7 @@ use yii\base\Component;
 use paxxion\craftcountryload\Plugin;
 use Symfony\Component\Intl\Countries;
 use \L91\ISO_3166_2\Subdivision;
+use Illuminate\Support\Collection;
 
 /**
  * Geo Service service
@@ -108,13 +109,18 @@ class GeoService extends Component
             : null;
     }
 
-    public static function isItaly($countryCode) {
-        if (!$countryCode) {
-            return false;
+    public static function italyProvinces($region) {
+        if (!$region) {
+            return null;
         }
 
-        return $countryCode == 'IT';
+        $filePath = dirname(__DIR__) . '/data/italy.json';
+        $json = file_get_contents($filePath);
+        $json = json_decode($json, true);
+
+        Craft::dd($json[$region]);
     }
+   
 
     public static function isEuCountry($countryCode) {
         if (!$countryCode) {

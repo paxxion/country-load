@@ -18,11 +18,12 @@ class ProxyVariable
     public function regions($countryCode = false, $lang = false) {
         return GeoService::regions($countryCode, $lang);
     }
+    
+    public function italyProvinces($region = false) {
+        return GeoService::italyProvinces($region);
+    }
 
     public function allRegions() {
-
-
-
         $countries = $this->countries('fr');
         $out = [];
         foreach($countries['base'] as $code => $name) {
