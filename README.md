@@ -14,7 +14,7 @@ This plugin uses open-source PHP libraries to list countries and regions. The da
 
 `craft.countryLoad.countries(lang)`
 
-This gives you an array of countries and country codes. By default it will use currentSite.language but you can pass an optional parameter.
+This gives you an array of countries and country codes. By default it will use currentSite.language but you can pass an optional parameter in order to localize country names.
 
 The result array is always split into `base` and `promoted` countries. This makes it much easier to handle on the frontend but if you don’t like it you can just merge the two arrays.
 
@@ -123,7 +123,8 @@ Specify a language for country names. If you don't, `currentSite.language` will 
 		classes: {
 			label: 'block mb-1',
 			select: 'w-full',
-			regionWrapper: 'mt-4'
+			regionWrapper: 'mt-4',
+			provinceWrapper: 'mt-4'
 		}
 	}) }}
 </div>
