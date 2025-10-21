@@ -83,13 +83,16 @@ Pretty straightforward. Please note that if you set required.country to false, r
 
 ```
 labels: {
+	country : 'Country',
+	region : 'Region',
+	province : 'Province',
 	chooseCountry: ‘Choose your country’,
 	chooseRegion: ‘Choose your region’,
 	chooseProvince: ‘Choose your province’,
 }
 ```
 
-Labels for the dropdowns’ empty states. 
+Labels for fields and empty states. 
 
 ```
 names: {
@@ -99,7 +102,7 @@ names: {
 }
 ```
 
-As you can see, fields names are also customizable so it's easier to integrate in your own forms.
+Fields names are also customizable so it's easier to integrate in your own forms.
 
 ```
 enableItalyProvinces: false
