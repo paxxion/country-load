@@ -69,7 +69,7 @@ classes: {
 }
 ```
 
-CountryLoad does NOT come with styles. If you need them, you can have them.
+CountryLoad is BYOS (bring your own style). At the very least, labels need to have a class with `display: block` otherwise they'll look quite wrong.
 
 ```
 required: {
@@ -134,8 +134,6 @@ A simple Tailwind-based dropdown example. Of course, you can just use it like so
 ```
 {{ craft.countryLoad.dropdown }}
 ```
-
-But without styles it will look all wrong. At the very least, labels need to have `display: block`.
 
 ## FAQ
 
