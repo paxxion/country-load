@@ -109,16 +109,16 @@ class GeoService extends Component
             : null;
     }
 
-    public static function italyProvinces($region) {
-        if (!$region) {
-            return null;
-        }
-
+    public static function italyProvinces($region = false) {
         $filePath = dirname(__DIR__) . '/data/italy.json';
         $json = file_get_contents($filePath);
-        $json = json_decode($json, true);
+        $out = json_decode($json, true);
 
-        Craft::dd($json[$region]);
+        if($region) {
+            return $out[$region];
+        }
+        
+        return $out;
     }
    
 

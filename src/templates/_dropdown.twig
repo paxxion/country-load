@@ -5,12 +5,12 @@
 
 <script>
     var getRegions = function(code) {        
-        {% if options.ajax %}
-
-        {% else %}
-            var regions = JSON.parse('{{ craft.countryLoad.allRegions|json_encode|e('js')|raw }}');
-            return regions[code];
-        {% endif %}
+        var regions = JSON.parse('{{ craft.countryLoad.allRegions|json_encode|e('js')|raw }}');
+        return regions[code];
+    }
+    var getProvinces = function(region) {        
+        var provinces = JSON.parse('{{ craft.countryLoad.italyProvinces|json_encode|e('js')|raw }}');
+        return provinces[region];
     }
 </script>
 
@@ -19,21 +19,30 @@
     <div x-data="{
         selectedCountry: '',
         selectedRegion: '',
-        countries: JSON.parse('{{ craft.countryLoad.countries|json_encode|e('js')|raw }}'),
+        selectedProvince: '',
+        countries: JSON.parse('{{ craft.countryLoad.countries(options.language)|json_encode|e('js')|raw }}'),
         regions: null,
+        provinces: null,
+        enableItalyProvinces: {{ options.enableItalyProvinces ? 'true' : 'false' }},
         init() {
             var self = this;
         },
         fetchRegions() {
             var self = this;
             self.selectedRegion = '';
+            self.selectedProvince = '';
             self.regions = getRegions(self.selectedCountry);
+        },
+        fetchProvinces() {
+            var self = this;
+            self.selectedProvince = '';
+            self.provinces = getProvinces(self.selectedRegion);
         }
     }">
         <div class="{{ options.classes.countryWrapper }}">
             <label class="{{ options.classes.label }}">{{ options.labels.country }}</label>
-            <select @change="fetchRegions" x-model="selectedCountry" name="{{ options.names.country }}" class="{{ options.classes.select }}">
-                <option>{{ options.labels.chooseCountry }}</option>
+            <select @change="fetchRegions" x-model="selectedCountry" name="{{ options.names.country }}" class="{{ options.classes.select }}" {{ options.required.country ? 'required' : false }}>
+                <option value="">{{ options.labels.chooseCountry }}</option>
                 <template x-if="countries.promoted">
                     <template x-for="name,code in countries.promoted">
                         <option :value="code" x-text="name"></option>
@@ -49,10 +58,22 @@
         <template x-if="regions">
             <div class="{{ options.classes.regionWrapper }}">
                 <label class="{{ options.classes.label }}">{{ options.labels.region }}</label>
-                <select x-model="selectedRegion" name="{{ options.names.region }}" class="{{ options.classes.select }}">
-                    <option>{{ options.labels.chooseRegion }}</option>
+                <select  @change="fetchProvinces" x-model="selectedRegion" name="{{ options.names.region }}" class="{{ options.classes.select }}" {{ options.required.region ? 'required' : false }}>
+                    <option value="">{{ options.labels.chooseRegion }}</option>
                     <template x-for="name, code in regions">
                         <option :value="name" x-text="name"></option>
+                    </template>
+                </select>
+            </div>
+        </template>
+
+        <template x-if="enableItalyProvinces && selectedCountry == 'IT' && selectedRegion != '' ">
+            <div class="{{ options.classes.provinceWrapper }}">
+                <label class="{{ options.classes.label }}">{{ options.labels.province }}</label>
+                <select x-model="selectedProvince" name="{{ options.names.province }}" class="{{ options.classes.select }}" {{ options.required.province ? 'required' : false }}>
+                    <option value="">{{ options.labels.chooseProvince }}</option>
+                    <template x-for="p in provinces">
+                        <option :value="p.name" x-text="p.name"></option>
                     </template>
                 </select>
             </div>

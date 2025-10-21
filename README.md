@@ -28,7 +28,7 @@ This gives you an array of regions for the provided countryCode (case-insensitiv
 
 `craft.countryLoad.italyProvinces(region)`
 
-Returns all the _province_ for the specified region, split into `name` and `code` since it's quite common to need both:
+Returns all the _province_ for the specified region. If you don't pass a `region`, you will get the complete provinces array. Note that each provice has two keys, `name` and `code` since it's quite common to need both:
 
 ```
 {
@@ -102,10 +102,40 @@ names: {
 As you can see, fields names are also customizable so it's easier to integrate in your own forms.
 
 ```
-provinces: false
+enableItalyProvinces: false
 ```
 
 You can optionally enable a third dropdown to let users choose their Italian province.
+
+```
+language: false
+```
+
+Specify a language for country names. If you don't, `currentSite.language` will be used.
+
+## Example
+
+```
+<div>
+	{{ craft.countryLoad.dropdown({
+		language: 'it',
+		provinces: true,
+		classes: {
+			label: 'block mb-1',
+			select: 'w-full',
+			regionWrapper: 'mt-4'
+		}
+	}) }}
+</div>
+```
+
+A simple Tailwind-based dropdown example. Of course, you can just use it like so:
+
+```
+{{ craft.countryLoad.dropdown }}
+```
+
+But without styles it will look all wrong. At the very least, labels need to have `display: block`.
 
 ## FAQ
 

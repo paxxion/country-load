@@ -23,8 +23,8 @@ class ProxyVariable
         return GeoService::italyProvinces($region);
     }
 
-    public function allRegions() {
-        $countries = $this->countries('fr');
+    public function allRegions($lang = false) {
+        $countries = $this->countries($lang);
         $out = [];
         foreach($countries['base'] as $code => $name) {
             $out[$code] = $this->regions($code);
@@ -32,7 +32,6 @@ class ProxyVariable
         foreach($countries['promoted'] as $code => $name) {
             $out[$code] = $this->regions($code);
         }
-        
         return $out;
     }
 
@@ -44,6 +43,7 @@ class ProxyVariable
                 'wrapper' => '',
                 'countryWrapper' => '',
                 'regionWrapper' => '',
+                'provinceWrapper' => '',
                 'label' => '',
                 'select' => '',
                 'error' => '',
@@ -51,17 +51,23 @@ class ProxyVariable
             'required' => [
                 'country' => true,
                 'region' => true,
+                'province' => true,
             ],
             'labels' => [
                 'country' => 'Country',
                 'region' => 'Region',
+                'province' => 'Province',
                 'chooseCountry' => 'Choose your country',
-                'chooseRegion' => 'Choose region',
+                'chooseRegion' => 'Choose your region',
+                'chooseProvince' => 'Choose your province',
             ],
             'names' => [
                 'country' => 'country',
                 'region' => 'region',
-            ]
+                'province' => 'province',
+            ],
+            'enableItalyProvinces' => false,
+            'language' => false
         ];
 
         $options = array_replace_recursive($defaults, (array) $options);
@@ -73,3 +79,8 @@ class ProxyVariable
 
     
 }
+
+
+// TODO
+// lingua dropdown
+// province
