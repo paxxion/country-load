@@ -113,6 +113,10 @@ You can optionally enable a third dropdown to let users choose their Italian pro
 
 Unfortunately, we cannot help you with that. Please refer to the included libraries mentioned above to submit your request.
 
+**Why Italian municipalities (comuni) are not included?**
+
+It's quite uncommon to need them and we wanted to stay practical. Also, we're still looking for a reliable (and up to date) source of information. 
+
 **I don’t like your widget!**
 
 No problem, you have all you need to build one yourself.
