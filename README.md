@@ -28,7 +28,7 @@ This gives you an array of regions for the provided countryCode (case-insensitiv
 
 `craft.countryLoad.italyProvinces(region)`
 
-Returns all the _province_ for the specified region. If you don't pass a `region`, you will get the complete provinces array. Note that each provice has two keys, `name` and `code` since it's quite common to need both:
+Returns all the provinces for the specified Italian region. If you don't pass a `region`, you will get the complete provinces array. Note that each province has two keys, `name` and `code` since it's quite common to need both:
 
 ```
 {
